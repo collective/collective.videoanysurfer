@@ -1,6 +1,40 @@
 Introduction
 ============
 
+This addon adds controls over youtube video to display them
+while being compliant with anysurfer_ 2.0.
+
+AnySurfer 2.0
+=============
+
+French: http://www.anysurfer.org/fr/video-dans-un-lecteur-flash
+Nederlands: http://www.anysurfer.org/video-in-een-flashplayer
+
+Features
+========
+
+* Add play/pause links to control video
+* Add transcription as rich text
+* Add components to easy embed youtube video in custom views/viewlet
+* Add portlet to display youtube video
+
+Credits
+=======
+
+Companies
+---------
+
+|cirb|_ CIRB / CIBG
+
+* `Contact us <mailto:irisline@irisnet.be>`_
 
 
-This product may contain traces of nuts.
+Authors
+
+- JeanMichel FRANCOIS aka toutpt <toutpt@gmail.com>
+
+.. Contributors
+
+.. |cirb| image:: http://www.cirb.irisnet.be/logo.jpg
+.. _cirb: http://cirb.irisnet.be
+.. _sitemap: http://support.google.com/webmasters/bin/answer.py?hl=en&answer=183668&topic=8476&ctx=topic
