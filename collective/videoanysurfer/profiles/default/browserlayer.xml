@@ -1,0 +1,4 @@
+<layers>
+    <layer name="collective.videoanysurfer"
+           interface="collective.videoanysurfer.browser.interfaces.ILayer" />
+</layers>
