@@ -8,24 +8,26 @@
       name="collective.videoanysurfer"
       />
   
-  
-  <!-- EXAMPLE:
-  <browser:viewlet
-      name="collective.someviewlet"
-      manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
-      class=".viewlets.MyViewlet"
-      layer=".interfaces.ILayer"
-      permission="zope2.View"
-      />
+  <browser:resource
+    name="collective.videoanysurfer.nomensamediaplayer.js"
+    file="link_view.js"
+  />
   <include package="plone.app.contentmenu" />
   <browser:page
-      name="myview"
+      name="videoanysurfer_view"
+      for="Products.ATContentTypes.interfaces.IATLink"
       menu="plone_displayviews"
-      title="Galleria"
-      class=".myfile.MyView"
+      title="AnySurfer video view"
+      class=".link_view.LinkView"
       layer=".interfaces.ILayer"
       permission="zope2.View"
       />
-  -->
+  <browser:page
+      name="videoanysurfer_transcription"
+      for="Products.ATContentTypes.interfaces.IATLink"
+      class=".link_view.VideoTranscription"
+      layer=".interfaces.ILayer"
+      permission="zope2.View"
+      />
 
 </configure>

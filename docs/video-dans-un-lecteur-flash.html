@@ -1,0 +1,123 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Vidéo dans un lecteur Flash</title>
+<style type="text/css">
+body{
+font-size: 13px;
+}
+</style>
+</head>
+<body>
+<section id="content">
+
+            <nav id="breadcrumb">
+        <p>Vous êtes ici: <a href="/fr">Home</a>  ›  Vidéo dans un lecteur Flash</p> 
+      </nav> <!-- /#breadcrumbs -->
+      
+              
+        <h1> Vidéo dans un lecteur Flash</h1>
+      
+      
+                  
+      <section id="actual-content">
+        
+<!-- Intern pad (HTML): <a href="internal:node/201">Vidéo dans un lecteur Flash</a> -->
+<!-- Intern pad (Markdown): [Vidéo dans un lecteur Flash](internal:node/201) -->
+
+<div id="node-201" class="node node-type-page node-promoted clearfix">
+
+  
+    
+  <div class="content">
+    <p>Les lecteurs multimédia de type Flashplayer sont souvent utilisés pour la lecture de vidéos en ligne parce qu'ils ne requièrent pas de logiciel particulier côté serveur et offrent une compatibilité maximale avec les systèmes d'exploitation et navigateurs web. Cet article décrit les critères d'accessibilité pour un lecteur Flash.</p>
+<p>Certains lecteurs Flash sont-ils plus accessibles que d'autres? Quelles adaptions sont nécessaires pour garantir une accessibilité à tous?</p>
+<h2>Critères d'accessibilité</h2>
+<ul>
+<li>Les boutons pour démarrer la vidéo, l'interrompre et l'arrêter doivent être utilisables au moyen du clavier. </li>
+<li>Les intitulés des boutons de commande doivent être clairs également pour les utilisateurs de lecteurs d'écran.</li>
+<li>Le lecteur doit disposer d'une fonction pour afficher des sous-titres.</li>
+</ul>
+<p>S'il n'est pas possible de proposer des boutons de contrôle accessibles, il peut également être acceptable de proposer un lien pour télécharger la vidéo en format mp4 qui contient les sous-titres.</p>
+<h2>Choix d'un lecteur Flash</h2>
+<p>Pour intégrer une vidéo dans une page de votre site, vous avez à votre disposition une multitude de lecteurs multimédias, dont un grand nombre peuvent être téléchargés gratuitement. Mais les boutons de contrôle de ces lecteurs Flash ne sont pas accessibles au moyen du clavier dans tous les cas de figure.</p>
+<p>Un exemplaire qui a été conçu avec une attention particulière pour l'accessibilité est le <a href="http://www.jeroenwijering.com/">JW player de Jeroen Wijering</a> (open source et gratuit pour un usage non commercial). Il présente l'avantages de permettre l'ajout de sous-titres et d'une audiodescription. Et le même lecteur permet d'intégrer un film hébergé sur votre propre serveur ou mis sur Youtube. Mais même le JWplayer n'est pas utilisable avec le lecteur d'écran JAWS. Celui-ci voit le lecteur comme une boite noire (begin Flash movie, end flash movie)</p>
+<p>Une limitation importante est que les navigateurs Firefox et Safari, même dans leurs versions récentes, ne permettent pas de déplacer le focus sur un objet Flash. Après avoir cliqué sur l'objet, il est possible de naviguer au moyen de la touche TAB, mais le fait de devoir cliquer sur l'objet pour commencer pose un problème à tous les utilisateurs qui ne peuvent pas utiliser la souris. Le JWplayer a également ce problème. </p>
+<p>Il y a deux manières de contourner le problème:</p>
+<ul>
+<li>ajouter des boutons de contrôle accessibles, en HTML (notre préférence, mais pas toujours possible)</li>
+<li>prévoir un lien pour télécharger la vidé (avec sous-titres).</li>
+</ul>
+<h2>Prévoir des boutons de contrôle accessibles</h2>
+<p>Le principe est simple : les boutons de contrôle sont ajoutés comme des liens (graphiques) dans la page HTML qui contient l'objet Flash. Ces liens communiquent avec le lecteur Flash au moyen de Javascript. Pour que ce soit possible il faut qu'un API Javascript soit disponible. Comme les boutons de contrôle sont de simples liens HTML, vous pouvez les placer et les nommer à votre guise et leur donner l'apparence que vous voulez.  </p>
+<p>Voici quelques exemples d'application de ce principe:</p>
+<ul>
+<li>Nous l'avons testé avec le JWplayer, ce qui donne un <a href="http://examples.anysurfer.be/opleiding_video/dragon_demo_accessible_JW5_JWembedder_yt.html">exemple de JWplayer avec boutons de commande accessibles</a>.  Vous trouverez toutes les infos utiles sur <a href="http://www.longtailvideo.com/support/jw-player/jw-player-for-flash-v5">la page de support du JWplayer v5</a>.</li>
+<li>Cela fonctionne aussi très bien avec le lecteur Youtube, comme expliqué dans <a href="http://wac.osu.edu/examples/youtube-player-controls/#Accessible-Controls-for-the-YouTube-Embedded-Video-Player">l'artcile du OSU accessibility Center "Accessible Youtube video" (en anglais)</a>. </li>
+<li>
+<p>Le <a href="http://examples.anysurfer.be/sophie/nomensa-player/nomensa-Accessible-Media-Player-0685257/example/example-youtube.html">lecteur multimédia de Nomensa</a> est accessible et open source. Il fonctionne sur les principes expliqués ci-dessus et présente l'avantage d'être une solution prête à l'emploi avec feuille de style. Il se différencie des deux solutions précédentes par la présence d'un bouton accessible qui permet d'activer ou de désactiver le sous-titrage. </p>
+</li>
+<li>L'<a href="http://developer.vimeo.com/player/js-api#methods">API Javascript de Vimeo (en anglais)</a> ainsi que l'<a href="http://www.dailymotion.com/be-fr/doc/api/player/javascript_api">API de  DailyMotion</a> permettent également de contrôler ces lecteurs multimédia de l'extérieur, au moyen de Javascript. </li>
+</ul>
+<p><strong>Remarques</strong>:  </p>
+<ul>
+<li>Dans les exemples données, seule la solution de Nomensa permet de rendre le bouton d'activation/désactivation des sous-titres (CC pour Closed Captions) accessible au clavier. SI vous choisissez une autre solution, nous proposons alors d'activer les sous-titres par défaut pour qu'ils soient disponibles pour ceux qui n'utilisent pas de souris.  </li>
+<li>Il existe également des techniques faisant usage uniquement de la technologie Flash pour rendre les boutons de commande (plus) accessibles. Nous ne considérons pas ces techniques comme suffisantes pour l'instant parce qu'il n'est pas certain qu'elles fonctionneront avec la plupart des aides techniques. </li>
+</ul>
+<h2>Prévoir des liens de téléchargement</h2>
+<p>Ceci n'est pas obligatoire si des boutons de commande accessibles ont été ajoutés, mais cela reste une bonne solution de rechange au cas ou Flash n'est pas disponible. </p>
+<h2>Conclusion</h2>
+<p>Certains flashplayers son-ils plus accessibles que d'autres? Oui, voir le tableau ci-dessous:<br>
+</p><table>
+<tbody><tr>
+<th>Player</th>
+<th>Sous-titrage</th>
+<th>Audiodescription</th>
+<th>Accessibilité clavier</th>
+<th>Utilisation avec lecteur d'écran</th>
+<th>API Javascript</th>
+</tr>
+<tr>
+<th>Youtube</th>
+<td><img src="http://www.anysurfer.be/docs_system/assets/images/ok.png" alt="OK"></td>
+<td><img src="http://www.anysurfer.be/docs_system/assets/images/nok.png" alt="Pas OK"></td>
+<td><img src="http://www.anysurfer.be/docs_system/assets/images/nok.png" alt="Pas OK"></td>
+<td><img src="http://www.anysurfer.be/docs_system/assets/images/nok.png" alt="Pas OK"></td>
+<td><img src="http://www.anysurfer.be/docs_system/assets/images/ok.png" alt="OK"></td>
+</tr>
+<tr>
+<th>JW player</th>
+<td><img src="http://www.anysurfer.be/docs_system/assets/images/ok.png" alt="OK"></td>
+<td><img src="http://www.anysurfer.be/docs_system/assets/images/ok.png" alt="OK"></td>
+<td><img src="http://www.anysurfer.be/docs_system/assets/images/nok.png" alt="Pas OK"></td>
+<td><img src="http://www.anysurfer.be/docs_system/assets/images/nok.png" alt="Pas OK"></td>
+<td><img src="http://www.anysurfer.be/docs_system/assets/images/ok.png" alt="OK"></td>
+</tr>
+<tr>
+<th>Dailymotion</th>
+<td><img src="http://www.anysurfer.be/docs_system/assets/images/ok.png" alt="OK"></td>
+<td><img src="http://www.anysurfer.be/docs_system/assets/images/nok.png" alt="Pas OK"></td>
+<td><img src="http://www.anysurfer.be/docs_system/assets/images/nok.png" alt="Pas OK"></td>
+<td><img src="http://www.anysurfer.be/docs_system/assets/images/nok.png" alt="Pas OK"></td>
+<td><img src="http://www.anysurfer.be/docs_system/assets/images/ok.png" alt="OK"></td>
+</tr>
+<tr>
+<th>Vimeo</th>
+<td><img src="http://www.anysurfer.be/docs_system/assets/images/nok.png" alt="Pas OK"></td>
+<td><img src="http://www.anysurfer.be/docs_system/assets/images/nok.png" alt="Pas OK"></td>
+<td><img src="http://www.anysurfer.be/docs_system/assets/images/nok.png" alt="Pas OK"></td>
+<td><img src="http://www.anysurfer.be/docs_system/assets/images/nok.png" alt="Pas OK"></td>
+<td><img src="http://www.anysurfer.be/docs_system/assets/images/ok.png" alt="OK"></td>
+</tr>
+</tbody></table>
+<p>Même les meilleures solutions ne garantissent pas une accessibilité complète. Choisissez donc un lecteur qui permet d'afficher des sous-titres et auquel vous pouvez facilement ajouter des boutons de commande accessibles. </p>
+      </div>
+
+  
+  </div> <!-- /.node -->
+      </section> <!-- /#actual-content -->
+
+    </section>
+
+</body>
+</html>

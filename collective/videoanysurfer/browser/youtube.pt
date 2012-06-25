@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="pnr.policy">
+<body>
+<div metal:fill-slot="content-core">
+
+  <tal:block tal:define="youobj view/get_video_info">
+     <ul class="subfolder_menubox">
+      <li><a onclick="javascript:playVideo();" i18n:translate="">play the video</a></li>
+      <li><a onclick="javascript:pauseVideo();" i18n:translate="">pause the video</a></li>
+      <li><a onclick="javascript:pauseVideo()" tal:attributes="href youobj/url" target="_blank" i18n:translate="">whatch on youtube</a></li>
+     </ul>
+     <div class="video_link" id="player"></div>
+     <script type="text/javascript" tal:content="youobj/js"></script>
+  </tal:block>
+
+<script type="text/javascript">
+// 2. This code loads the IFrame Player API code asynchronously.
+var tag = document.createElement('script');
+tag.src = "http://www.youtube.com/player_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+// 3. This function creates an iframe (and YouTube player)
+//    after the API code downloads.
+var ytplayer;
+function onYouTubePlayerAPIReady() {
+  ytplayer = new YT.Player('player', {
+    width: ytplayer_settings['width'],
+    height: ytplayer_settings['height'],
+    videoId: settings['video_id'], 
+    events: {
+    }
+  });
+}
+function stopVideo() {
+  ytplayer.stopVideo();
+}
+function playVideo() {
+  ytplayer.playVideo();
+}
+function pauseVideo() {
+  ytplayer.pauseVideo();
+}
+</script>
+</div>
+</body>
+</html>
