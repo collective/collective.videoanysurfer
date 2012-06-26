@@ -13,6 +13,7 @@
     file="link_view.js"
   />
   <include package="plone.app.contentmenu" />
+  <include package="Products.CMFCore" file="permissions.zcml" />
   <browser:page
       name="videoanysurfer_view"
       for="Products.ATContentTypes.interfaces.IATLink"
@@ -23,11 +24,17 @@
       permission="zope2.View"
       />
   <browser:page
-      name="videoanysurfer_transcription"
+      name="videoanysurfer_captions"
       for="Products.ATContentTypes.interfaces.IATLink"
-      class=".link_view.VideoTranscription"
+      class=".link_view.VideoCaptions"
       layer=".interfaces.ILayer"
       permission="zope2.View"
       />
-
+  <browser:page
+      name="videoanysurfer_extra_edit"
+      for="Products.ATContentTypes.interfaces.IATLink"
+      class=".link_view.VideoExtraDataEditFormView"
+      layer=".interfaces.ILayer"
+      permission="cmf.ModifyPortalContent"
+  />
 </configure>

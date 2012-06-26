@@ -19,6 +19,8 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
   <include package=".upgrades" />
-
+  <adapter
+    for="Products.ATContentTypes.interfaces.IATLink"
+    factory=".video.VideoExtraData"/>
 
 </configure>
