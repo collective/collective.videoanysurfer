@@ -29,7 +29,6 @@ setup(name='collective.videoanysurfer',
       install_requires=[
           'setuptools',
           'collective.js.nomensamediaplayer',
-          'collective.configviews',
           # -*- Extra requirements: -*-
       ],
       extras_require = dict(

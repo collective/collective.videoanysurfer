@@ -14,7 +14,7 @@ Features
 ========
 
 * Add play/pause links to control video
-* Add transcription as rich text
+* Add transcription and captions support
 * Add link options to download MP4 files with subs
 * Add components to easy embed youtube video in custom views/viewlet
 * Add portlet to display youtube video

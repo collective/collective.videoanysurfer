@@ -3,6 +3,5 @@
   <version>1000</version>
   <dependencies>
     <dependency>profile-collective.js.nomensamediaplayer:default</dependency>
-    <dependency>profile-collective.configviews:default</dependency>
   </dependencies>
 </metadata>

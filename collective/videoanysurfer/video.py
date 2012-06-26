@@ -22,9 +22,6 @@ transcription_raw_desc = _(u"This text will be displayed next to the video")
 class IVideoAnySurfer(interface.Interface):
     """Any surfer 2.0 metadata"""
 
-    download_uri = schema.URI(title=download_url_title,
-                              description=download_url_desc,
-                              required=False)
 #
 #    transcription_uri = schema.URI(title=transcription_uri_title,
 #                                   description=transcription_uri_desc,
@@ -46,11 +43,16 @@ class IVideoExtraData(interface.Interface):
     """Adding data to improve video accessibility"""
 
     captions = schema.Text(title=captions_title,
-                           description=captions_desc)
+                           description=captions_desc,
+                           required=False)
 
     transcription = schema.Text(title=transcription_title,
                                 description=transcription_desc,
                                 required=False)
+
+    download_url = schema.URI(title=download_url_title,
+                              description=download_url_desc,
+                              required=False)
 
 VIDEO_EXTRADATA_KEY = "collective.videoanysurfer.videoextradata"
 
@@ -96,3 +98,15 @@ class VideoExtraData(object):
 
     transcription = property(get_transcription, set_transcription,
                              del_transcription)
+
+    def get_download_url(self):
+        return self.storage.get('download_url', '')
+
+    def set_download_url(self, value):
+        self.storage['download_url'] = value
+
+    def del_download_url(self):
+        del self.storage['download_url']
+
+    download_url = property(get_download_url, set_download_url,
+                            del_download_url)

@@ -1,10 +1,7 @@
 from zope import component
-from zope import interface
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from collective.configviews.browser.configurable_view import ConfigurableBaseView
-from collective.videoanysurfer.video import IVideoAnySurfer, IVideoExtraData
+from collective.videoanysurfer.video import IVideoExtraData
 from urlparse import urlparse
-from urllib import urlopen
 from Products.Five.browser import BrowserView
 from plone.autoform.form import AutoExtensibleForm
 from z3c.form import form
@@ -12,10 +9,9 @@ from AccessControl.security import checkPermission
 YOUTUBE_TRANS = "http://video.google.com/timedtext?lang=%(lang)s&v=%(vid)s"
 
 
-class LinkView(ConfigurableBaseView):
+class LinkView(BrowserView):
     """Link View helper"""
     index = ViewPageTemplateFile('link_view.pt')
-    settings_schema = IVideoAnySurfer
 
     def __init__(self, context, request):
         super(LinkView, self).__init__(context, request)
@@ -48,14 +44,11 @@ class LinkView(ConfigurableBaseView):
         self.update()
         return self.index()
 
-    def download_uri(self):
-        return self.settings.download_uri
-
-    def transcription_uri(self):
-        return self.settings.transcription_uri
+    def download_url(self):
+        return self.extra.download_url
 
     def transcription(self):
-        return self.settings.transcription
+        return self.extra.transcription
 
     def video_url(self):
         return self.context.getRemoteUrl()
@@ -69,9 +62,6 @@ class LinkView(ConfigurableBaseView):
             return
 
         return "%s/@@videoanysurfer_captions" % self.context.absolute_url()
-
-    def is_youtube(self):
-        return self.youtube
 
     def language(self):
         return self.portal_state.language()

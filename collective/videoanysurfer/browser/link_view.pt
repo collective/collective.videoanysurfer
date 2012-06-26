@@ -13,6 +13,13 @@
    <a class="captions" style="display:none;"
      tal:condition="view/captions" tal:attributes="href view/captions">Captions</a>
  </p>
+
+ <a tal:condition="view/download_url"
+    tal:attributes="href view/download_url"
+    class="download-video" target="_blank">Download the video</a>
+
+ <pre class="video-transcription" tal:content="view/transcription"></pre>
+
  <div tal:condition="view/canedit" class="edit-video-data">
   <a tal:attributes="href string:${view/context_url}/@@videoanysurfer_extra_edit" i18n:translate="">Edit Video Extra data</a>
  </div>
