@@ -100,6 +100,7 @@ class VideoExtraDataEditForm(AutoExtensibleForm, form.EditForm):
             extra.update()
             extra.captions = data.get('captions', '')
             extra.transcription = data.get('transcription', '')
+            extra.download_url = data.get('download_url', '')
             self.request.response.redirect(self.context.absolute_url())
             return True
 
