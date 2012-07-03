@@ -3,12 +3,12 @@
     i18n_domain="collective.videoanysurfer">
 
     <upgradeStep
-        source="1000"
+        source="*"
         destination="1001"
-        title="Upgrade"
+        title="Common Upgrade"
         description=""
         profile="collective.videoanysurfer:default"
-        handler=".v1x.upgrade_1000_to_1001"
+        handler=".upgrades.common"
         />
 
 </configure>

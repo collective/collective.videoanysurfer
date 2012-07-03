@@ -19,6 +19,18 @@ Features
 * Add components to easy embed youtube video in custom views/viewlet
 * Add portlet to display youtube video
 
+About Captions Format
+=====================
+
+SRT (SubRip subtitle)
+SBV (YouTube)
+Flash DFXP,
+SMI or SAMI (Windows Media),
+SCC for iOS,
+CPT.XML (Flash Captionate XML),
+QT (Quicktime)
+STL (Spruce Subtitle File).
+TTML (<tt ...>) W3C Timed text markup language
 
 Credits
 =======

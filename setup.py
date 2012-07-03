@@ -28,11 +28,12 @@ setup(name='collective.videoanysurfer',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'collective.js.nomensamediaplayer',
           # -*- Extra requirements: -*-
       ],
       extras_require = dict(
           tests=['plone.app.testing'],
+          nomensa=['collective.js.nomensamediaplayer'],
+          jwplayer=['collective.js.jwplayer']
       ),
       entry_points="""
       # -*- Entry points: -*-

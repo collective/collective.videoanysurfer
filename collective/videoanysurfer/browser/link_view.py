@@ -6,6 +6,8 @@ from Products.Five.browser import BrowserView
 from plone.autoform.form import AutoExtensibleForm
 from z3c.form import form
 from AccessControl.security import checkPermission
+from plone.registry.interfaces import IRegistry
+from collective.videoanysurfer.browser.vocabulary import IPlayer
 YOUTUBE_TRANS = "http://video.google.com/timedtext?lang=%(lang)s&v=%(vid)s"
 
 
@@ -19,6 +21,7 @@ class LinkView(BrowserView):
         self.vid = None
         self.portal_state = None
         self.extra = None
+        self.player = None
 
     def update(self):
         if self.youtube is None:
@@ -39,6 +42,13 @@ class LinkView(BrowserView):
         if self.extra is None:
             self.extra = component.queryAdapter(self.context, IVideoExtraData)
             self.extra.update()
+
+        if self.player is None:
+            registry = component.getUtility(IRegistry)
+            player = registry['collective.videoanysurfer.player']
+            if player is not None:
+                self.player = component.queryUtility(IPlayer,
+                                                     name=player)
 
     def __call__(self):
         self.update()
@@ -71,6 +81,9 @@ class LinkView(BrowserView):
 
     def context_url(self):
         return self.context.absolute_url()
+
+    def embed_player(self):
+        return self.player.template(self)
 
 
 class VideoCaptions(BrowserView):

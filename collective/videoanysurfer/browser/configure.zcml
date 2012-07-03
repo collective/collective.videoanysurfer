@@ -1,5 +1,6 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="collective.videoanysurfer">
 
@@ -7,11 +8,33 @@
       interface=".interfaces.ILayer"
       name="collective.videoanysurfer"
       />
+
+  <!-- HAS NOMENSA -->
+  <configure zcml:condition="installed collective.js.nomensamediaplayer">
+    <browser:resource
+      name="collective.videoanysurfer.nomensamediaplayer.js"
+      file="nomensa.js"
+      />
+    <utility
+      factory=".nomensa.Player"
+      name="nomensa"/>
+  </configure>
+
+  <!-- HAS JWPlayer -->
+  <configure zcml:condition="installed collective.js.jwplayer">
+    <browser:resource
+      name="collective.videoanysurfer.jwplayer.js"
+      file="jwplayer.js"
+      />
+    <utility
+      factory=".jwplayer.Player"
+      name="jwplayer"/>
+  </configure>
+  <utility
+    component=".vocabulary.PlayerVocabularyFactory"
+    name="collective.videanysurfer.playervocabulary"
+    />
   
-  <browser:resource
-    name="collective.videoanysurfer.nomensamediaplayer.js"
-    file="link_view.js"
-  />
   <include package="plone.app.contentmenu" />
   <include package="Products.CMFCore" file="permissions.zcml" />
   <browser:page
