@@ -4,13 +4,13 @@ Changelog
 1.0.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- use height of the parent container
 
 
 1.0.1 (2012-07-03)
 ------------------
 
-- Nothing changed yet.
+- add package metadatas
 
 
 1.0 (2012-07-03)
