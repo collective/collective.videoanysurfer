@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: collective.videoanysurfer\n"
-"POT-Creation-Date: 2010-11-10 11:05+0000\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "PO-Revision-Date: 2008-02-04 18:00+0000\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
@@ -14,3 +14,44 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.videoanysurfer\n"
+
+#: ./video.py:38
+msgid "Captions"
+msgstr ""
+
+#: ./video.py:9
+msgid "Download url"
+msgstr ""
+
+#: ./browser/jwplayer.py:87
+msgid "JWPlayer"
+msgstr ""
+
+#: ./browser/nomensa.py:21
+msgid "Nomensa Player"
+msgstr ""
+
+#: ./video.py:17
+msgid "Please push the XML transcription file to use"
+msgstr ""
+
+#: ./video.py:19
+msgid "This text will be displayed next to the video"
+msgstr ""
+
+#: ./video.py:13
+msgid "Transcription"
+msgstr ""
+
+#: ./video.py:18
+msgid "Transcription Raw text"
+msgstr ""
+
+#: ./video.py:16
+msgid "Transcription URL"
+msgstr ""
+
+#: ./video.py:39
+msgid "XML content to display during video playing"
+msgstr ""
+
