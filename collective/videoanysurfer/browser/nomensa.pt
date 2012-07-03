@@ -1,10 +1,11 @@
-<div class="nomensa">
- <p>
+<div class="nomensa-wrapper">
+ <div class="nomensa">
+  <p>
    <a class="videoanysurfer" tal:attributes="href view/video_url" tal:content="view/video_title">VIDEO TITLE</a>
    <a class="captions" style="display:none;"
      tal:condition="view/captions" tal:attributes="href view/captions">Captions</a>
- </p>
-
+  </p>
+ </div>
  <a tal:condition="view/download_url"
     tal:attributes="href view/download_url"
     class="download-video" target="_blank">Download the video</a>
@@ -19,5 +20,5 @@ jQuery(function($){
  $('.edit-video-data a').prepOverlay({subtype: 'ajax', filter: '#content > *'});
 });
 </script>
-
 </div>
+
