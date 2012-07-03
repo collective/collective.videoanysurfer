@@ -40,7 +40,7 @@ Companies
 
 |cirb|_ CIRB / CIBG
 
-* `Contact us <mailto:irisline@irisnet.be>`_
+* `Contact CIRB <mailto:irisline@irisnet.be>`_
 
 
 Authors
