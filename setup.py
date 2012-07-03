@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0'
+version = '1.1.dev0'
 
 setup(name='collective.videoanysurfer',
       version=version,
@@ -17,10 +17,10 @@ setup(name='collective.videoanysurfer',
         "Framework :: Plone :: 4.1",
         "Framework :: Plone :: 4.2",
         ],
-      keywords='',
-      author='',
-      author_email='',
-      url='http://svn.plone.org/svn/collective/',
+      keywords='plone video anysurfer',
+      author='JeanMichel FRANCOIS',
+      author_email='toutpt@gmail.com',
+      url='https://github.com/collective/collective.videoanysurfer',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['collective'],
