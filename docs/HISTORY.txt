@@ -5,6 +5,7 @@ Changelog
 ------------------
 
 - Move the edit video form link into edit bar
+- Make nomensa media player the default one
 
 
 1.0.2 (2012-07-03)

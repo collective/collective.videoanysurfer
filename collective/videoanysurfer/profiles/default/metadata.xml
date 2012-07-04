@@ -2,5 +2,6 @@
 <metadata>
   <version>1002</version>
   <dependencies>
+    <dependency>profile-collective.js.nomensamediaplayer:default</dependency>
   </dependencies>
 </metadata>
