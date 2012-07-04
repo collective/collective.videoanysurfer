@@ -4,7 +4,7 @@ Changelog
 1.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Move the edit video form link into edit bar
 
 
 1.0.2 (2012-07-03)

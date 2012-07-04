@@ -9,16 +9,13 @@
       name="collective.videoanysurfer"
       />
 
-  <!-- HAS NOMENSA -->
-  <configure zcml:condition="installed collective.js.nomensamediaplayer">
-    <browser:resource
-      name="collective.videoanysurfer.nomensamediaplayer.js"
-      file="nomensa.js"
-      />
-    <utility
-      factory=".nomensa.Player"
-      name="nomensa"/>
-  </configure>
+  <browser:resource
+    name="collective.videoanysurfer.nomensamediaplayer.js"
+    file="nomensa.js"
+    />
+  <utility
+    factory=".nomensa.Player"
+    name="nomensa"/>
 
   <!-- HAS JWPlayer -->
   <!-- JWPlayer integration is not finished yet
