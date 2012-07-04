@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-07-03 15:51+0000\n"
+"POT-Creation-Date: 2012-07-04 14:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,8 +25,17 @@ msgstr ""
 msgid "Download url"
 msgstr ""
 
-#: ./browser/jwplayer.py:87
+#: ./i18n.py:5
+#: ./profiles/default/types/Link.xml
+msgid "Edit Video Extra"
+msgstr ""
+
+#: ./browser/jwplayer.py:86
 msgid "JWPlayer"
+msgstr ""
+
+#: ./browser/link_view.py:92
+msgid "No configured player."
 msgstr ""
 
 #: ./browser/nomensa.py:21

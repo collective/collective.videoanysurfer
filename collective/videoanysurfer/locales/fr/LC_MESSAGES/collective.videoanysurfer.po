@@ -25,9 +25,18 @@ msgstr "Sous-titrage"
 msgid "Download url"
 msgstr "URL de téléchargement"
 
-#: ./browser/jwplayer.py:87
+#: ./i18n.py:5
+#: ./profiles/default/types/Link.xml
+msgid "Edit Video Extra"
+msgstr ""
+
+#: ./browser/jwplayer.py:86
 msgid "JWPlayer"
 msgstr "JWPlayer"
+
+#: ./browser/link_view.py:92
+msgid "No configured player."
+msgstr ""
 
 #: ./browser/nomensa.py:21
 msgid "Nomensa Player"

@@ -1,13 +1,17 @@
-from zope import component
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from collective.videoanysurfer.video import IVideoExtraData
 from urlparse import urlparse
-from Products.Five.browser import BrowserView
-from plone.autoform.form import AutoExtensibleForm
-from z3c.form import form
+
 from AccessControl.security import checkPermission
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Products.Five.browser import BrowserView
+
+from zope import component
+from z3c.form import form
+from plone.autoform.form import AutoExtensibleForm
 from plone.registry.interfaces import IRegistry
+from collective.videoanysurfer.video import IVideoExtraData
 from collective.videoanysurfer.browser.vocabulary import IPlayer
+from collective.videoanysurfer.i18n import _
+
 YOUTUBE_TRANS = "http://video.google.com/timedtext?lang=%(lang)s&v=%(vid)s"
 
 
@@ -83,7 +87,9 @@ class LinkView(BrowserView):
         return self.context.absolute_url()
 
     def embed_player(self):
-        return self.player.template(self)
+        if self.player is not None:
+            return self.player.template(self)
+        return self.context.translate(_(u"No configured player."))
 
 
 class VideoCaptions(BrowserView):

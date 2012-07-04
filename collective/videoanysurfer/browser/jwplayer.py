@@ -2,11 +2,10 @@ from zope import component
 from zope import interface
 from zope import schema
 from collective.videoanysurfer.browser import vocabulary
-from zope import i18nmessageid
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.Five.browser import BrowserView
 from plone.registry.interfaces import IRegistry
-_ = i18nmessageid.MessageFactory('collective.videoanysurfer')
+from collective.videoanysurfer.i18n import _
 
 HAS_Player = True
 try:
