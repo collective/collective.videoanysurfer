@@ -1,11 +1,24 @@
+#python
+from captionstransformer.registry import REGISTRY as CAPTION_REGISTRY
+try:
+    import simplejson as json
+except ImportError:
+    import json
+
+#zope
 from zope import component
 from zope import interface
 from zope import schema
-from collective.videoanysurfer.browser import vocabulary
+
+#cmf
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.Five.browser import BrowserView
+
+#plone
 from plone.registry.interfaces import IRegistry
+
 from collective.videoanysurfer.i18n import _
+from collective.videoanysurfer.browser import vocabulary
 
 HAS_Player = True
 try:
@@ -13,11 +26,6 @@ try:
 except ImportError:
     HAS_Player = False
     RESOURCE_ID = ""
-
-try:
-    import simplejson as json
-except ImportError:
-    import json
 
 
 class IJWPlayerSiteSettings(interface.Interface):
@@ -86,6 +94,7 @@ class Player(object):
         self.name = _(u"JWPlayer")
         self.resourceid = RESOURCE_ID
         self.template = ViewPageTemplateFile('jwplayer.pt')
+        self.captions_info = CAPTION_REGISTRY["SRT"]
 
     def get_settings(self, videosettings):
         return {

@@ -16,6 +16,11 @@ How to install
 This addon can be installed as any other plone addons. Please follow official
 documentation_.
 
+This addons depends on:
+
+* collective.js.nomensamediaplayer
+* collective.captionmanager
+
 Features
 ========
 
@@ -24,6 +29,7 @@ Features
 * Add link options to download MP4 files with subs
 * Add components to easy embed youtube video in custom views/viewlet
 * Add portlet to display youtube video
+* Automatic download of captions from youtube
 
 Players
 =======
@@ -35,7 +41,8 @@ https://raw.github.com/nomensa/Accessible-Media-Player/master/example/captions/c
 About Captions Format
 =====================
 
-captions format depends on the used player. Nomensa player support only TTML.
+captions format depends on the used player. Nomensa player support only TTML
+but the addon collective.captionmanager let you write it in other formats.
 
 SRT (SubRip subtitle)
 SBV (YouTube)

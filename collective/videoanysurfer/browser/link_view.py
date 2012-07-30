@@ -1,18 +1,27 @@
-from urlparse import urlparse
+#python
+from urllib import urlopen
+from captionstransformer.registry import REGISTRY as CAPTION_REGISTRY
+from StringIO import StringIO
 
+#zope
+from zope import component
+from z3c.form import form
 from AccessControl.security import checkPermission
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.Five.browser import BrowserView
 
-from zope import component
-from z3c.form import form
+#plone
 from plone.autoform.form import AutoExtensibleForm
 from plone.registry.interfaces import IRegistry
-from collective.videoanysurfer.video import IVideoExtraData
+from plone.app.z3cform.layout import wrap_form
+
+#collective
+from collective.videoanysurfer.video import IVideoExtraData, get_youtube_id
 from collective.videoanysurfer.browser.vocabulary import IPlayer
 from collective.videoanysurfer.i18n import _
 
 YOUTUBE_TRANS = "http://video.google.com/timedtext?lang=%(lang)s&v=%(vid)s"
+CAPTIONS_URL = "%s/@@videoanysurfer_captions?captions_format=%s"
 
 
 class LinkView(BrowserView):
@@ -24,20 +33,13 @@ class LinkView(BrowserView):
         self.youtube = None
         self.vid = None
         self.portal_state = None
+        self.context_state = None
         self.extra = None
         self.player = None
 
     def update(self):
         if self.youtube is None:
-            parsed = urlparse(self.video_url())
-            domain = parsed.netloc == 'www.youtube.com'
-            scheme = parsed.scheme in ('http', 'https')
-            path = parsed.path == '/watch'
-            qs = parsed.query
-            params = dict([x.split("=") for x in qs.split("&")])
-            self.vid = params.get('v', None)
-            vid = bool(self.vid)
-            self.youtube = domain and scheme and path and vid
+            self.youtube = get_youtube_id(self.context.getRemoteUrl())
 
         if self.portal_state is None:
             self.portal_state = component.getMultiAdapter((self.context,
@@ -71,14 +73,17 @@ class LinkView(BrowserView):
         return self.context.Title()
 
     def captions(self):
-        captions = self.extra.captions
-        if not captions:
+
+        if not self.extra.captions:
             return
 
-        return "%s/@@videoanysurfer_captions" % self.context.absolute_url()
+        format = self.player.captions_info["id"]
+        context_url = self.context.absolute_url()
+
+        return CAPTIONS_URL % (context_url, format)
 
     def language(self):
-        return self.portal_state.language()
+        return self.context.Language()
 
     def canedit(self):
         return checkPermission("cmf.ModifyPortalContent", self.context)
@@ -95,12 +100,36 @@ class LinkView(BrowserView):
 class VideoCaptions(BrowserView):
 
     def __call__(self):
+        format = self.request.get('captions_format', 'TTML')
         self.request.response.setHeader('X-Theme-Disabled', 'True')
-        self.request.response.setHeader('Content-Type', 'text/xml')
+
         extra = component.queryAdapter(self.context, IVideoExtraData)
+
         if extra:
             extra.update()
+            format_info = CAPTION_REGISTRY[format]
+            self.request.response.setHeader('Content-Type',
+                                format_info["mimetype"])
+
+            if extra.captions_format and extra.captions_format["id"] != format:
+                return self.transform(extra, format)
+
             return extra.captions
+
+    def transform(self, extra, target):
+        captions = extra.captions
+        eid = extra.captions_format["id"]
+
+        if eid == target:
+            return captions
+
+        sio = StringIO(extra.captions)
+        reader = extra.captions_format["reader"](sio)
+        captions = reader.read()
+        if captions:
+            writer = CAPTION_REGISTRY[target]["writer"](StringIO())
+            writer.set_captions(captions)
+            return writer.captions_to_text()
 
 
 class VideoExtraDataEditForm(AutoExtensibleForm, form.EditForm):
@@ -110,19 +139,45 @@ class VideoExtraDataEditForm(AutoExtensibleForm, form.EditForm):
         extra = component.queryAdapter(self.context, IVideoExtraData)
         if extra:
             extra.update()
+            if extra.captions_format:
+                captions_format = extra.captions_format['id']
+            else:
+                captions_format = "TTML"
             return {'captions': extra.captions,
-                    'transcription': extra.transcription}
+                    'captions_format': captions_format,
+                    'transcription': extra.transcription,
+                    'download_url': extra.download_url}
 
     def applyChanges(self, data):
         extra = component.queryAdapter(self.context, IVideoExtraData)
+
         if extra:
             extra.update()
-            extra.captions = data.get('captions', '')
             extra.transcription = data.get('transcription', '')
             extra.download_url = data.get('download_url', '')
+
+            data_captions = data.get('captions', '')
+            if not data_captions and not extra.captions:
+                extra.captions = self.download_captions()
+                extra.captions_format = 'transcript'  # force format
+            elif not data_captions and extra.captions:
+                extra.captions = ''
+            elif data_captions:
+                extra.captions = data_captions
+
             self.request.response.redirect(self.context.absolute_url())
+
             return True
 
-from plone.app.z3cform.layout import wrap_form
+    def download_captions(self):
+        """Download caption from youtube"""
+        url = self.context.getRemoteUrl()
+        youtube = get_youtube_id(url)
+        if youtube:
+            #download caption and save it to extra
+            url = YOUTUBE_TRANS % {'lang': self.context.Language(),
+                                   'vid': youtube}
+            return urlopen(url).read()
+
 
 VideoExtraDataEditFormView = wrap_form(VideoExtraDataEditForm)

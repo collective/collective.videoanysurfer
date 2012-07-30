@@ -1,8 +1,16 @@
+#python
+from urlparse import urlparse
+from captionstransformer.registry import REGISTRY as CAPTION_REGISTRY
+
+#zope
 from zope import interface
 from zope import schema
 from zope import i18nmessageid
 from zope.annotation.interfaces import IAnnotations
 import persistent
+
+from collective.captionmanager.vocabulary import format_vocabulary
+
 _ = i18nmessageid.MessageFactory('collective.videoanysurfer')
 
 
@@ -37,6 +45,7 @@ class IVideoAnySurfer(interface.Interface):
 
 captions_title = _(u"Captions")
 captions_desc = _(u"XML content to display during video playing")
+format_title = _(u"Captions Format")
 
 
 class IVideoExtraData(interface.Interface):
@@ -45,6 +54,9 @@ class IVideoExtraData(interface.Interface):
     captions = schema.Text(title=captions_title,
                            description=captions_desc,
                            required=False)
+
+    captions_format = schema.Choice(title=format_title,
+                                    vocabulary=format_vocabulary)
 
     transcription = schema.Text(title=transcription_title,
                                 description=transcription_desc,
@@ -110,3 +122,33 @@ class VideoExtraData(object):
 
     download_url = property(get_download_url, set_download_url,
                             del_download_url)
+
+    def set_captions_format(self, value):
+        self.storage['captions_format'] = value
+
+    def get_captions_format(self):
+        captions_format = self.storage.get('captions_format', None)
+        if captions_format:
+            return CAPTION_REGISTRY[captions_format]
+
+    def del_captions_format(self):
+        del self.storage['captions_format']
+
+    captions_format = property(get_captions_format, set_captions_format,
+                               del_captions_format)
+
+
+def get_youtube_id(url):
+    """Return None if not a youtube URL"""
+    parsed = urlparse(url)
+    domain = parsed.netloc == 'www.youtube.com'
+    scheme = parsed.scheme in ('http', 'https')
+    path = parsed.path == '/watch'
+    qs = parsed.query
+    params = dict([x.split("=") for x in qs.split("&")])
+    vid = params.get('v', False)
+
+    if not (domain and scheme and path and vid):
+        return
+    
+    return vid
