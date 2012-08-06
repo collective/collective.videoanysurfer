@@ -1,14 +1,16 @@
 #python
 from urllib import urlopen
 from captionstransformer.registry import REGISTRY as CAPTION_REGISTRY
+from captionstransformer import youtube
 from StringIO import StringIO
 
 #zope
 from zope import component
-from z3c.form import form
+from z3c.form import form, button
 from AccessControl.security import checkPermission
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.Five.browser import BrowserView
+from z3c.form.i18n import MessageFactory as _z
 
 #plone
 from plone.autoform.form import AutoExtensibleForm
@@ -16,11 +18,10 @@ from plone.registry.interfaces import IRegistry
 from plone.app.z3cform.layout import wrap_form
 
 #collective
-from collective.videoanysurfer.video import IVideoExtraData, get_youtube_id
+from collective.videoanysurfer.video import IVideoExtraData
 from collective.videoanysurfer.browser.vocabulary import IPlayer
 from collective.videoanysurfer.i18n import _
 
-YOUTUBE_TRANS = "http://video.google.com/timedtext?lang=%(lang)s&v=%(vid)s"
 CAPTIONS_URL = "%s/@@videoanysurfer_captions?captions_format=%s"
 
 
@@ -39,7 +40,7 @@ class LinkView(BrowserView):
 
     def update(self):
         if self.youtube is None:
-            self.youtube = get_youtube_id(self.context.getRemoteUrl())
+            self.youtube = youtube.get_video_id(self.context.getRemoteUrl())
 
         if self.portal_state is None:
             self.portal_state = component.getMultiAdapter((self.context,
@@ -99,10 +100,18 @@ class LinkView(BrowserView):
 
 class VideoCaptions(BrowserView):
 
-    def __call__(self):
-        format = self.request.get('captions_format', 'TTML')
+    def update_request(self):
         self.request.response.setHeader('X-Theme-Disabled', 'True')
 
+    def get_format(self):
+        return self.request.get('captions_format', 'TTML')
+
+    def __call__(self):
+        self.update_request()
+        return self.get_captions()
+
+    def get_captions(self):
+        format = self.get_format()
         extra = component.queryAdapter(self.context, IVideoExtraData)
 
         if extra:
@@ -139,6 +148,7 @@ class VideoExtraDataEditForm(AutoExtensibleForm, form.EditForm):
         extra = component.queryAdapter(self.context, IVideoExtraData)
         if extra:
             extra.update()
+            #FIXME: captions format is not saved
             if extra.captions_format:
                 captions_format = extra.captions_format['id']
             else:
@@ -148,19 +158,38 @@ class VideoExtraDataEditForm(AutoExtensibleForm, form.EditForm):
                     'transcription': extra.transcription,
                     'download_url': extra.download_url}
 
-    def applyChanges(self, data):
+    def getExtra(self):
         extra = component.queryAdapter(self.context, IVideoExtraData)
 
         if extra:
             extra.update()
+
+        return extra
+
+    #really strange: when adding an action, the apply one is removed.
+    # lets add it back
+    @button.buttonAndHandler(_z('Apply'), name='apply')
+    def handleApply(self, action):
+        #those weird decorator change the signature ... lets copy/paste code
+        data, errors = self.extractData()
+        if errors:
+            self.status = self.formErrorsMessage
+            return
+        changes = self.applyChanges(data)
+        if changes:
+            self.status = self.successMessage
+        else:
+            self.status = self.noChangesMessage
+
+    def applyChanges(self, data):
+        extra = self.getExtra()
+        if extra:
             extra.transcription = data.get('transcription', '')
             extra.download_url = data.get('download_url', '')
+            extra.captions_format = data.get('captions_format', '')
 
             data_captions = data.get('captions', '')
-            if not data_captions and not extra.captions:
-                extra.captions = self.download_captions()
-                extra.captions_format = 'transcript'  # force format
-            elif not data_captions and extra.captions:
+            if not data_captions and extra.captions:
                 extra.captions = ''
             elif data_captions:
                 extra.captions = data_captions
@@ -169,15 +198,61 @@ class VideoExtraDataEditForm(AutoExtensibleForm, form.EditForm):
 
             return True
 
-    def download_captions(self):
-        """Download caption from youtube"""
-        url = self.context.getRemoteUrl()
-        youtube = get_youtube_id(url)
-        if youtube:
-            #download caption and save it to extra
-            url = YOUTUBE_TRANS % {'lang': self.context.Language(),
-                                   'vid': youtube}
-            return urlopen(url).read()
+    @button.buttonAndHandler(_('Update from youtube'), name='update')
+    def handleUpdate(self, action):
+        data, errors = self.extractData()
+        if errors:
+            self.status = self.formErrorsMessage
+            return
+        changes = self.applyUpdate(data)
+        if changes:
+            self.status = self.successMessage
+        else:
+            self.status = self.noChangesMessage
+
+    def applyUpdate(self, data):
+        extra = self.getExtra()
+
+        if extra:
+            url = self.context.getRemoteUrl()
+            language = self.context.Language()
+            reader = youtube.get_reader(url, language)
+
+            if reader:
+                reader.read()
+                extra.captions = reader.rawcontent
+                extra.captions_format = 'transcript'  # force format
+
+            self.request.response.redirect(self.context.absolute_url())
+
+            return True
+
+        return False
+
+    @button.buttonAndHandler(_('Delete'), name='delete')
+    def handleDelete(self, action):
+        data, errors = self.extractData()
+        if errors:
+            self.status = self.formErrorsMessage
+            return
+        changes = self.applyDelete()
+        if changes:
+            self.status = self.successMessage
+        else:
+            self.status = self.noChangesMessage
+
+    def applyDelete(self):
+        extra = self.getExtra()
+
+        if extra:
+            extra.captions = u''
+            extra.transcription = u''
+            extra.download_url = ''
+            extra.captions_format = ''
+            self.request.response.redirect(self.context.absolute_url())
+            return True
+
+        return False
 
 
 VideoExtraDataEditFormView = wrap_form(VideoExtraDataEditForm)

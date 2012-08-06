@@ -1,5 +1,4 @@
 #python
-from urlparse import urlparse
 from captionstransformer.registry import REGISTRY as CAPTION_REGISTRY
 
 #zope
@@ -12,7 +11,6 @@ import persistent
 from collective.captionmanager.vocabulary import format_vocabulary
 
 _ = i18nmessageid.MessageFactory('collective.videoanysurfer')
-
 
 download_url_title = _(u"Download url")
 download_url_desc = _(u"""You may provide a download URL in MP4 format with
@@ -138,17 +136,3 @@ class VideoExtraData(object):
                                del_captions_format)
 
 
-def get_youtube_id(url):
-    """Return None if not a youtube URL"""
-    parsed = urlparse(url)
-    domain = parsed.netloc == 'www.youtube.com'
-    scheme = parsed.scheme in ('http', 'https')
-    path = parsed.path == '/watch'
-    qs = parsed.query
-    params = dict([x.split("=") for x in qs.split("&")])
-    vid = params.get('v', False)
-
-    if not (domain and scheme and path and vid):
-        return
-    
-    return vid

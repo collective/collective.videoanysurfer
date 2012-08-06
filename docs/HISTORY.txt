@@ -6,7 +6,6 @@ Changelog
 
 - Add integration of collective.captionmanager
 
-
 1.0.3 (2012-07-04)
 ------------------
 
