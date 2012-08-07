@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: collective.videoanysurfer\n"
-"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"POT-Creation-Date: 2012-08-07 09:45+0000\n"
 "PO-Revision-Date: 2010-11-13 11:07+0100\n"
 "Last-Translator: YOURNAME <name@email.com>\n"
 "Language-Team: French <plone-fr@lists.plone.org>\n"
@@ -17,52 +17,72 @@ msgstr ""
 "Domain: collective.videoanysurfer\n"
 "X-Is-Fallback-For: fr-be fr-ca fr-lu fr-mc fr-ch fr-fr\n"
 
-#: ./video.py:38
+#: ./video.py:44
 msgid "Captions"
 msgstr "Sous-titrage"
 
-#: ./video.py:9
+#: ./video.py:46
+msgid "Captions Format"
+msgstr "Format des sous-titres"
+
+#: ./browser/link_view.py:232
+msgid "Delete"
+msgstr "Supprimer"
+
+#: ./video.py:15
 msgid "Download url"
 msgstr "URL de téléchargement"
 
 #: ./i18n.py:5
 #: ./profiles/default/types/Link.xml
 msgid "Edit Video Extra"
-msgstr ""
+msgstr "Modifier vidéo"
 
-#: ./browser/jwplayer.py:86
+#: ./browser/jwplayer.py:94
 msgid "JWPlayer"
 msgstr "JWPlayer"
 
-#: ./browser/link_view.py:92
+#: ./browser/link_view.py:98
 msgid "No configured player."
-msgstr ""
+msgstr "Aucun lecteur configuré"
 
-#: ./browser/nomensa.py:21
+#: ./browser/nomensa.py:30
 msgid "Nomensa Player"
 msgstr "Lecteur Nomensa"
 
-#: ./video.py:17
+#: ./video.py:23
 msgid "Please push the XML transcription file to use"
 msgstr "Veuillez ajouter la trascription xml à utiliser"
 
-#: ./video.py:19
+#: ./video.py:25
 msgid "This text will be displayed next to the video"
 msgstr "Ce texte sera affiché juste en dessous de la vidéo"
 
-#: ./video.py:13
+#: ./video.py:19
 msgid "Transcription"
 msgstr "Transcription"
 
-#: ./video.py:18
+#: ./video.py:24
 msgid "Transcription Raw text"
 msgstr "Texte de trascription brut"
 
-#: ./video.py:16
+#: ./video.py:22
 msgid "Transcription URL"
 msgstr "URL de trascription"
 
-#: ./video.py:39
+#: ./browser/link_view.py:201
+msgid "Update from youtube"
+msgstr "Mettre à jour via Youtube"
+
+#: ./video.py:45
 msgid "XML content to display during video playing"
 msgstr "Contenu XML à afficher durant la lecture de la vidéo"
+
+#: ./video.py:16
+msgid "You may provide a download URL in MP4 format withsubtitles in it to let people being able to watch the video. "
+msgstr "Vous pouvez proposer une URL de téléchargement de la vidéo au format MP4 incluant les sous-titres pour permettre aux gens de la regarder"
+
+#: ./video.py:20
+msgid "You may provide the audio transcription of thecurrent video here. It is pure text"
+msgstr "Vous pouvez proposer une transcription audio du contenu vidéo ici. Il s'agit de pur texte."
 

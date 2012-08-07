@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: collective.videoanysurfer\n"
-"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"POT-Creation-Date: 2012-08-07 09:45+0000\n"
 "PO-Revision-Date: 2008-02-04 18:00+0000\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
@@ -15,11 +15,19 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.videoanysurfer\n"
 
-#: ./video.py:38
+#: ./video.py:44
 msgid "Captions"
 msgstr ""
 
-#: ./video.py:9
+#: ./video.py:46
+msgid "Captions Format"
+msgstr ""
+
+#: ./browser/link_view.py:232
+msgid "Delete"
+msgstr ""
+
+#: ./video.py:15
 msgid "Download url"
 msgstr ""
 
@@ -28,39 +36,51 @@ msgstr ""
 msgid "Edit Video Extra"
 msgstr ""
 
-#: ./browser/jwplayer.py:86
+#: ./browser/jwplayer.py:94
 msgid "JWPlayer"
 msgstr ""
 
-#: ./browser/link_view.py:92
+#: ./browser/link_view.py:98
 msgid "No configured player."
 msgstr ""
 
-#: ./browser/nomensa.py:21
+#: ./browser/nomensa.py:30
 msgid "Nomensa Player"
 msgstr ""
 
-#: ./video.py:17
+#: ./video.py:23
 msgid "Please push the XML transcription file to use"
 msgstr ""
 
-#: ./video.py:19
+#: ./video.py:25
 msgid "This text will be displayed next to the video"
 msgstr ""
 
-#: ./video.py:13
+#: ./video.py:19
 msgid "Transcription"
 msgstr ""
 
-#: ./video.py:18
+#: ./video.py:24
 msgid "Transcription Raw text"
 msgstr ""
 
-#: ./video.py:16
+#: ./video.py:22
 msgid "Transcription URL"
 msgstr ""
 
-#: ./video.py:39
+#: ./browser/link_view.py:201
+msgid "Update from youtube"
+msgstr ""
+
+#: ./video.py:45
 msgid "XML content to display during video playing"
+msgstr ""
+
+#: ./video.py:16
+msgid "You may provide a download URL in MP4 format withsubtitles in it to let people being able to watch the video. "
+msgstr ""
+
+#: ./video.py:20
+msgid "You may provide the audio transcription of thecurrent video here. It is pure text"
 msgstr ""
 

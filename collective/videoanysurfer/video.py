@@ -13,12 +13,12 @@ from collective.captionmanager.vocabulary import format_vocabulary
 _ = i18nmessageid.MessageFactory('collective.videoanysurfer')
 
 download_url_title = _(u"Download url")
-download_url_desc = _(u"""You may provide a download URL in MP4 format with
-subtitles in it to let people being able to watch the video. """)
+download_url_desc = _(u"You may provide a download URL in MP4 format with\
+subtitles in it to let people being able to watch the video. ")
 
 transcription_title = _(u"Transcription")
-transcription_desc = _(u"""You may provide the audio transcription of the
-current video here. It is pure text""")
+transcription_desc = _(u"You may provide the audio transcription of the\
+current video here. It is pure text")
 transcription_uri_title = _(u"Transcription URL")
 transcription_uri_desc = _(u"Please push the XML transcription file to use")
 transcription_raw_title = _(u"Transcription Raw text")
