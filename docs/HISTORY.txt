@@ -4,7 +4,7 @@ Changelog
 1.0.4 (unreleased)
 ------------------
 
-- Add integration of collective.captionmanager
+- Add integration of collective.captionmanager and captionstransformer
 
 1.0.3 (2012-07-04)
 ------------------
