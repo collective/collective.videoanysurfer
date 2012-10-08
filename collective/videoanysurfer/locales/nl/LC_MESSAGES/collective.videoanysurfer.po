@@ -19,70 +19,70 @@ msgstr ""
 
 #: ./video.py:44
 msgid "Captions"
-msgstr ""
-
+msgstr "Ondertitels"
+ 
 #: ./video.py:46
 msgid "Captions Format"
-msgstr ""
-
+msgstr "Formaat Ondertitels"
+ 
 #: ./browser/link_view.py:232
 msgid "Delete"
-msgstr ""
-
+msgstr "Wissen"
+ 
 #: ./video.py:15
 msgid "Download url"
-msgstr ""
-
+msgstr "Url downloaden"
+ 
 #: ./i18n.py:5
 #: ./profiles/default/types/Link.xml
 msgid "Edit Video Extra"
-msgstr ""
-
+msgstr "Video Bewerken Extra"
+ 
 #: ./browser/jwplayer.py:94
 msgid "JWPlayer"
-msgstr ""
-
+msgstr "JWPlayer"
+ 
 #: ./browser/link_view.py:98
 msgid "No configured player."
-msgstr ""
-
+msgstr "Geen speler ingesteld"
+ 
 #: ./browser/nomensa.py:30
 msgid "Nomensa Player"
-msgstr ""
-
+msgstr "Nomensa Player"
+ 
 #: ./video.py:23
 msgid "Please push the XML transcription file to use"
-msgstr ""
-
+msgstr "Gelieve het XML-transcriptiebestand te pushen om het te gebruiken"
+ 
 #: ./video.py:25
 msgid "This text will be displayed next to the video"
-msgstr ""
-
+msgstr "Deze tekst zal naast de video verschijnen"
+ 
 #: ./video.py:19
 msgid "Transcription"
-msgstr ""
-
+msgstr "Transcriptie"
+ 
 #: ./video.py:24
 msgid "Transcription Raw text"
-msgstr ""
-
+msgstr "Transcriptie Onbewerkte tekst"
+ 
 #: ./video.py:22
 msgid "Transcription URL"
-msgstr ""
-
+msgstr "URL Transcriptie"
+ 
 #: ./browser/link_view.py:201
 msgid "Update from youtube"
-msgstr ""
-
+msgstr "Updaten vanaf youtube"
+ 
 #: ./video.py:45
 msgid "XML content to display during video playing"
-msgstr ""
-
+msgstr "Tijdens het afspelen van de video weer te geven XML content"
+ 
 #: ./video.py:16
 msgid "You may provide a download URL in MP4 format withsubtitles in it to let people being able to watch the video. "
-msgstr ""
+msgstr "U kan er een URL in MP4-formaat met ondertitels voor download in plaatsen zodat mensen de video kunnen bekijken."
 
+ 
 #: ./video.py:20
-msgid "You may provide the audio transcription of thecurrent video here. It is pure text"
-msgstr ""
-
+msgid "You may provide the audio transcription of the current video here. It is pure text"
+msgstr "U kunt de audiotranscriptie van de huidige video hier aanbieden. Het is zuivere tekst"
