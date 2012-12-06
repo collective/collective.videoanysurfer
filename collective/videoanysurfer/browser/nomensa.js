@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    var $yt_links = $("a.videoanysurfer[href*='http://www.youtube.com/watch']");
+    var $yt_links = $(".nomensa a.videoanysurfer[href*='http://www.youtube.com/watch']");
     $.each($yt_links, function(i) {
         var $holder = $('<span />');
         $(this).parent().replaceWith($holder);

@@ -18,16 +18,23 @@
     name="nomensa"/>
 
   <!-- HAS JWPlayer -->
-  <!-- JWPlayer integration is not finished yet
+  <!-- JWPlayer integration is not finished yet -->
   <configure zcml:condition="installed collective.js.jwplayer">
     <browser:resource
       name="collective.videoanysurfer.jwplayer.js"
       file="jwplayer.js"
       />
+    <browser:page
+      name="videoanysurfer_jwplayer_settings"
+      for="*"
+      class=".jwplayer.JWPlayerSettings"
+      permission="zope2.View"
+      layer=".interfaces.ILayer"
+      />
     <utility
       factory=".jwplayer.Player"
       name="jwplayer"/>
-  </configure>-->
+  </configure>
   <utility
     component=".vocabulary.PlayerVocabularyFactory"
     name="collective.videanysurfer.playervocabulary"

@@ -1,3 +1,8 @@
-<div class="jwplayer-container">
+<div class="jwplayer-wrapper" tal:define="view_settings nocall:context/@@videoanysurfer_jwplayer_settings">
 
+    <div id="jwplayer-container">Loading the player ...</div>
+    <script type="text/javascript" tal:content="view_settings/jssettings"></script>
+    <script type="text/javascript">
+        jwplayer("jwplayer-container").setup(jwplayersettings);
+    </script>
 </div>

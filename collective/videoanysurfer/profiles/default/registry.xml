@@ -9,4 +9,5 @@
       </field>
       <value>nomensa</value>
     </record>
+    <records interface="collective.videoanysurfer.browser.jwplayer.IJWPlayerSettings"/>
 </registry>
