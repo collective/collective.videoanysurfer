@@ -13,4 +13,11 @@
  <pre class="video-transcription" tal:content="view/transcription"></pre>
 
 </div>
-
+<!--[if lte IE 7]>
+   <script>
+       $('.nomensa-wrapper').each(function(index) {
+           $('.nomensa', this).remove();
+           $(this).prepend('<p class="nosupport">This browser is not supported by YouTube Player !</p>');
+       });
+   </script>
+<![endif]-->
