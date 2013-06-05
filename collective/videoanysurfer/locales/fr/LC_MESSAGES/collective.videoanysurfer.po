@@ -86,3 +86,5 @@ msgstr "Vous pouvez proposer une URL de téléchargement de la vidéo au format 
 msgid "You may provide the audio transcription of thecurrent video here. It is pure text"
 msgstr "Vous pouvez proposer une transcription audio du contenu vidéo ici. Il s'agit de pur texte."
 
+msgid "youtube-no-support"
+msgstr "La version de votre navigateur n'est pas compatible avec le lecteur video de YouTube!"

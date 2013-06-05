@@ -1,4 +1,5 @@
-<div class="nomensa-wrapper">
+<div class="nomensa-wrapper" i18n:domain="collective.videoanysurfer">
+ <p class="hiddenStructure" i18n:translate="youtube-no-support">YouTube video player does not support this version of your browser !</p>
  <div class="nomensa">
   <p>
    <a class="videoanysurfer" tal:attributes="href view/video_url" tal:content="view/video_title">VIDEO TITLE</a>
@@ -17,7 +18,7 @@
    <script>
        $('.nomensa-wrapper').each(function(index) {
            $('.nomensa', this).remove();
-           $(this).prepend('<p class="nosupport">This browser is not supported by YouTube Player !</p>');
+           $('.hiddenStructure', this).removeClass().addClass('nosupport');
        });
    </script>
 <![endif]-->
