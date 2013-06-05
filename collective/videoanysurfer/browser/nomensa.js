@@ -1,5 +1,6 @@
 $(document).ready(function(){
     var $yt_links = $(".nomensa a.videoanysurfer[href*='http://www.youtube.com/watch']");
+    
     $.each($yt_links, function(i) {
         var $holder = $('<span />');
         $(this).parent().replaceWith($holder);
@@ -15,7 +16,8 @@ $(document).ready(function(){
             id:'yt'+i,
             media:link,
             captions:captionsf,
-            flashHeight:$holder.parent().height() - 30
+            flashHeight:$holder.parent().width()/16*9
         });
+        $(".control-bar .logo", $holder).hide();
     });
 });
