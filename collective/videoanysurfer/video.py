@@ -134,5 +134,3 @@ class VideoExtraData(object):
 
     captions_format = property(get_captions_format, set_captions_format,
                                del_captions_format)
-
-

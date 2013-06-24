@@ -31,11 +31,12 @@ except ImportError:
 class IJWPlayerSettings(interface.Interface):
     """Site wide settings for jwplayer"""
 
-    skin = schema.ASCIILine(title=u"Skin",
-                  description=u"A path. For example: \
-                    /skins/modieus/modieus.zip",
-                  required=False)
-#
+    skin = schema.ASCIILine(
+        title=u"Skin",
+        description=u"A path. For example: /skins/modieus/modieus.zip",
+        required=False
+    )
+        #
 #    width = schema.Int(title=u"Width",
 #                       required=False)
 #
@@ -82,6 +83,7 @@ class IJWPlayerSettings(interface.Interface):
 #
 #
 
+
 class Player(object):
     """Register JWplayer into collective.videoanysurfer"""
     interface.implements(vocabulary.IPlayer)
@@ -112,10 +114,11 @@ class JWPlayerSettings(BrowserView):
         if self._registry is None:
             self._registry = component.queryUtility(IRegistry)
         if self.settings is None:
+            rid = "/++resource++collective.js.jwplayer/player.swf"
             self.settings = {
-             "flashplayer": "/++resource++collective.js.jwplayer/player.swf",
-             "autostart": False,
-             "controlbar": "bottom"
+                "flashplayer": rid,
+                "autostart": False,
+                "controlbar": "bottom"
             }
             self.extract_settings()
 

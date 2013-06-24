@@ -1,5 +1,4 @@
 #python
-from urllib import urlopen
 from captionstransformer.registry import REGISTRY as CAPTION_REGISTRY
 from captionstransformer import youtube
 from StringIO import StringIO
@@ -43,9 +42,10 @@ class LinkView(BrowserView):
             self.youtube = youtube.get_video_id(self.context.getRemoteUrl())
 
         if self.portal_state is None:
-            self.portal_state = component.getMultiAdapter((self.context,
-                                                          self.request),
-                                                name=u'plone_portal_state')
+            self.portal_state = component.getMultiAdapter(
+                (self.context, self.request),
+                name=u'plone_portal_state'
+            )
         if self.extra is None:
             self.extra = component.queryAdapter(self.context, IVideoExtraData)
             self.extra.update()
@@ -117,9 +117,9 @@ class VideoCaptions(BrowserView):
         if extra:
             extra.update()
             format_info = CAPTION_REGISTRY[format]
-            self.request.response.setHeader('Content-Type',
-                                format_info["mimetype"])
-
+            self.request.response.setHeader(
+                'Content-Type', format_info["mimetype"]
+            )
             if extra.captions_format and extra.captions_format["id"] != format:
                 return self.transform(extra, format)
 
