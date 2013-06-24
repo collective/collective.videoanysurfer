@@ -81,18 +81,15 @@ Credits
 Companies
 ---------
 
-|cirb|_ CIRB / CIBG
-
 * `Contact CIRB <mailto:irisline@irisnet.be>`_
+* `Contact Makina-Corpus <mailto:python@makina-corpus.org>`_
 
-Authors
+People
+------
 
 - JeanMichel FRANCOIS aka toutpt <toutpt@gmail.com>
+- Stéphane Moussiaux <smoussiaux@cirb.irisnet.be>
 
-.. Contributors
-
-.. |cirb| image:: http://www.cirb.irisnet.be/logo.jpg
-.. _cirb: http://cirb.irisnet.be
 .. _anysurfer: http://www.anysurfer.org
 .. _nomensa: http://nomensa.com
 .. _documentation: http://plone.org/documentation/kb/installing-add-ons-quick-how-to
