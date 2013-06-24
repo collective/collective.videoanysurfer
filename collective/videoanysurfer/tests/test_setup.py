@@ -9,8 +9,8 @@ class TestSetup(base.IntegrationTestCase):
 
     def test_browserlayer(self):
         from plone.browserlayer import utils
-        from collective.videoanysurfer import layer
-        self.assertIn(layer.Layer, utils.registered_layers())
+        from collective.videoanysurfer.browser import interfaces
+        self.assertIn(interfaces.ILayer, utils.registered_layers())
 
     def test_upgrades(self):
         profile = 'collective.videoanysurfer:default'

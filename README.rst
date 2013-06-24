@@ -21,6 +21,26 @@ This addons depends on:
 * collective.js.nomensamediaplayer
 * collective.captionmanager
 
+
+Badges
+======
+
+.. image:: https://pypip.in/v/collective.videoanysurfer/badge.png
+    :target: https://crate.io/packages/collective.videoanysurfer/
+    :alt: Latest PyPI version
+
+.. image:: https://pypip.in/d/collective.videoanysurfer/badge.png
+    :target: https://crate.io/packages/collective.videoanysurfer/
+    :alt: Number of PyPI downloads
+
+.. image:: https://secure.travis-ci.org/collective/collective.videoanysurfer.png
+    :target: http://travis-ci.org/#!/collective/collective.videoanysurfer
+
+.. image:: https://coveralls.io/repos/collective/collective.videoanysurfer/badge.png?branch=master
+    :alt: Coverage
+    :target: https://coveralls.io/r/collective/collective.videoanysurfer
+
+
 Features
 ========
 
