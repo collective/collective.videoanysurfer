@@ -4,7 +4,7 @@ Changelog
 1.0.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix Manifest.in
 
 
 1.0.6 (2013-07-02)
